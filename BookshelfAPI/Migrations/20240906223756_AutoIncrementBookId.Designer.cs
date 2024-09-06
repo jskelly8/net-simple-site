@@ -3,6 +3,7 @@ using System;
 using BookshelfAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookshelfAPI.Migrations
 {
     [DbContext(typeof(BookshelfContext))]
-    partial class BookshelfContextModelSnapshot : ModelSnapshot
+    [Migration("20240906223756_AutoIncrementBookId")]
+    partial class AutoIncrementBookId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.8");
