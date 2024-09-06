@@ -9,18 +9,18 @@ namespace BookshelfAPI.Models
 
         [Required]
         [StringLength(100)]
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
         [StringLength(100)]
-        public string Author { get; set; }
+        public string? Author { get; set; }
 
         [StringLength(13)]
-        public string ISBN { get; set; }
+        public string? ISBN { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime PublishedDate { get; set; }
 
         [StringLength(50)]
-        public string Genre { get; set; }
+        public string? Genre { get; set; }
     }
 }

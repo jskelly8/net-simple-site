@@ -1,10 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using BookshelfAPI.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-// Configure Entity Framework to use SQL Server with the connection string from appsettings.json
+// Configure Entity Framework to use SQLite
 builder.Services.AddDbContext<BookshelfContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
