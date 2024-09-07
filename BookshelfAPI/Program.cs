@@ -16,8 +16,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowReactApp",
         policy =>
         {
-            // Allow the React app running on localhost:3000 (development)
-            policy.WithOrigins("http://localhost:3000")  // Update this with your front-end domain after deployment
+            policy.WithOrigins("http://localhost:3000")
                   .AllowAnyHeader()
                   .AllowAnyMethod();
         });
