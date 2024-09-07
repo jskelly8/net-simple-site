@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function BookForm({ selectedBook, setSelectedBook }) {
+function BookForm({ selectedBook, setSelectedBook, triggerReload }) {
   const [book, setBook] = useState({
     title: '',
     author: '',
@@ -38,6 +38,10 @@ function BookForm({ selectedBook, setSelectedBook }) {
       axios.put(`/api/books/${selectedBook.bookId}`, book)
         .then(() => {
           setSelectedBook(null);
+          triggerReload();
+        })
+        .catch(error => {
+          console.error("There was an error updating the book!", error);
         });
     } else {
       axios.post('/api/books', book)
@@ -49,6 +53,10 @@ function BookForm({ selectedBook, setSelectedBook }) {
             publishedDate: '',
             genre: ''
           });
+          triggerReload();
+        })
+        .catch(error => {
+          console.error("There was an error adding the book!", error);
         });
     }
   };

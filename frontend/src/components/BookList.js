@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function BookList({ setSelectedBook }) {
+function BookList({ setSelectedBook, reload }) {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
@@ -12,12 +12,15 @@ function BookList({ setSelectedBook }) {
       .catch(error => {
         console.error("There was an error fetching the books!", error);
       });
-  }, []);
+  }, [reload]);
 
   const handleDelete = (id) => {
     axios.delete(`/api/books/${id}`)
       .then(() => {
         setBooks(books.filter(book => book.bookId !== id));
+      })
+      .catch(error => {
+        console.error("There was an error deleting the book!", error);
       });
   };
 
@@ -27,9 +30,13 @@ function BookList({ setSelectedBook }) {
       <ul>
         {books.map(book => (
           <li key={book.bookId}>
-            {book.title} - {book.author} <br />
-            <button onClick={() => setSelectedBook(book)}>Edit</button>
-            <button onClick={() => handleDelete(book.bookId)}>Delete</button>
+            <div>
+              <strong>{book.title}</strong> - {book.author}
+            </div>
+            <div>
+              <button onClick={() => setSelectedBook(book)}>Edit</button>
+              <button onClick={() => handleDelete(book.bookId)} style={{ marginLeft: '10px' }}>Delete</button>
+            </div>
           </li>
         ))}
       </ul>
